@@ -1,5 +1,7 @@
 package Model;
 import Exceptions.AlreadyExistsException;
+import Exceptions.EmptyAirlineException;
+import Exceptions.NotFoundException;
 
 import java.util.Scanner;
 public class Menu {
@@ -14,7 +16,7 @@ public class Menu {
     }
 
     private String admin;
-        public void employerMenu() {
+        public void employerMenu(){
             int opcion;
 
             do {
@@ -39,12 +41,14 @@ public class Menu {
             scanner.close();
         }
 
-        public void addAirline() throws AlreadyExistsException{
-
-            if (!airport.getAirlines().contains(airline)) {
-                airport.getAirlines().add(airline);
-            } else {
-                throw new AlreadyExistsException ("This Airline already exists");
+        public void addAirline(){
+            System.out.println("Enter airline names: ");
+            String airlineName = scanner.nextLine();
+            try {
+                airport.addAirline(airlineName);
+                System.out.println("Airline successfully added");
+            }catch (AlreadyExistsException | NotFoundException | EmptyAirlineException e){
+                System.out.println(e.getMessage());
             }
         }
 }

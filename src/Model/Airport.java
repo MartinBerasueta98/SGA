@@ -1,5 +1,9 @@
 package Model;
 
+import Exceptions.AlreadyExistsException;
+import Exceptions.EmptyAirlineException;
+import Exceptions.NotFoundException;
+
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.TreeSet;
@@ -27,5 +31,16 @@ public class Airport {
 
     public void setEmployers(ArrayList<Person> employers) {
         this.employers = employers;
+    }
+    public void addAirline(String airlineName) throws NotFoundException, AlreadyExistsException, EmptyAirlineException {
+        Airline airline = AviationStack.searchAirline(airlineName);
+        if (airline != null) {
+               airlineName = airline.getAirlineName();
+               if (!getAirlines().contains(airlineName)) {
+                   getAirlines().add(airline);
+               } else {
+                   throw new AlreadyExistsException("ERROR: This airline already exists");
+               }
+        }
     }
 }
