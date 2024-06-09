@@ -13,12 +13,12 @@ public class Luggage<T>{
         return luggage;
     }
     
-    public boolean isOverweight(){
+    /*public boolean isOverweight(){
         for (luggage:
              ) {
             
         }
-    } 
+    } */
     
     //ADDLUGGAGE
 }

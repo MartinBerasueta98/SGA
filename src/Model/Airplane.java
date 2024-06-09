@@ -4,9 +4,11 @@ import java.util.ArrayList;
 
 public class Airplane {
     private String registrationNumber;
-    private String modelName;
+
     private ArrayList<Employer>employers;
-    private Seat
+    //private Seat
+    private int capacity;
+    private int maxSeatsPerRow;
 
     public Airplane(String registrationNumber, String modelName, boolean vipSeat) {
         this.registrationNumber = registrationNumber;

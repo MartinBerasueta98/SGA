@@ -1,20 +1,19 @@
 package Model;
 
+import java.text.MessageFormat;
 import java.util.ArrayList;
 
 public class Airline {
     private String airlineName;
     private String IATAcode;
     private ArrayList<Airplane> airplanes;
-    private String status;
-    private String type;
+    private ArrayList<Employer> employers;
 
-    public Airline(String airlineName, String IATAcode, String status, String type) {
-        this.airlineName = airlineName;
-        this.IATAcode = IATAcode;
-        this.airplanes = new ArrayList<>();
-        this.status = status;
-        this.type = type;
+    public Airline(String airlineName, String IATAcode) {
+        setAirlineName(airlineName);
+        setIATAcode(IATAcode);
+        setAirplanes(new ArrayList<Airplane>());
+        setEmployers(new ArrayList<Employer>());
     }
 
     public Airline(){}
@@ -35,27 +34,24 @@ public class Airline {
         this.IATAcode = IATAcode;
     }
 
-    public String getStatus() {
-        return status;
+    public ArrayList<Employer> getEmployers() {
+        return employers;
     }
 
-    public void setStatus(String status) {
-        this.status = status;
+    public void setEmployers(ArrayList<Employer> employers) {
+        this.employers = employers;
     }
-
-    public String getType() {
-        return type;
-    }
-
-    public void setType(String type) {
-        this.type = type;
-    }
-
     public ArrayList<Airplane> getAirplanes() {
         return airplanes;
     }
 
     public void setAirplanes(ArrayList<Airplane> airplanes) {
         this.airplanes = airplanes;
+    }
+
+    @Override
+    public String toString() {
+        return MessageFormat.format("Airline'{'airlineName=''{0}'', IATAcode=''{1}'', " +
+                "airplanes={2}, employers={3}'}'", getAirlineName(), getIATAcode(), getAirplanes(), getEmployers());
     }
 }

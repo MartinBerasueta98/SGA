@@ -23,7 +23,7 @@ public class AirportTicketOffice extends OfficeTicket {
         return ticketStock;
     }
 
-    public AirportTicket sellTicket(Flight flight,Time time, Seat seat, Double price, Passanger passanger) throws NoAvailableFromSaleException {
+   /* public AirportTicket sellTicket(Flight flight,Time time, Seat seat, Double price, Passanger passanger) throws NoAvailableFromSaleException {
         if (isTicketAvailable(flight.getOrigen().getLocation(), flight.getDestiny().getLocation(), time, seat, flight.getGate())) {
             if (seat.getSeatType().getType() != "Economica") {
                 price = additionalCost();
@@ -37,7 +37,7 @@ public class AirportTicketOffice extends OfficeTicket {
         } else {
             throw new NoAvailableFromSaleException("This seat is not available");
         }
-    }
+    }*/
 
     public boolean isTicketAvailable(String from, String to, Time time, Seat seat, String gate){
         String key = generateTicketKey(from, to, time, seat.getNro(), gate);

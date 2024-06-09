@@ -1,5 +1,5 @@
 package Model;
 
 public class Backpack {
-    private Float weight
+    private Float weight;
 }
