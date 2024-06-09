@@ -11,14 +11,13 @@ public class AviationStack {
             throw new EmptyAirlineException("Error: Title cannot be empty.");
         }
         String[] titleArray = airlineName.split(" ");
-        StringBuilder url = new StringBuilder("https://api.aviationstack.com/v1/airlines");
+        StringBuilder url = new StringBuilder("api.aviationstack.com/v1/airlines?access_key=97f15b8be6f3166740924a17f0e670da");
         for (int i = 0; i < titleArray.length; i++) {
             url.append(titleArray[i]);
             if (i < (titleArray.length - 1)) {
                 url.append("+");
             }
         }
-        url.append("97f15b8be6f3166740924a17f0e670da");
         return url.toString();
     }
 
@@ -40,7 +39,6 @@ public class AviationStack {
             JSONObject jsonObject = new JSONObject(json);
             airline.setAirlineName(jsonObject.getString("airline_name"));
             airline.setIATAcode(jsonObject.getString("iata_code"));
-            airline.setFleetSize(jsonObject.getString("fleet_size"));
             airline.setStatus(jsonObject.getString("status"));
             airline.setType(jsonObject.getString("type"));
             return airline;

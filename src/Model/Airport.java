@@ -6,22 +6,21 @@ import Exceptions.NotFoundException;
 
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.TreeSet;
 
 public class Airport {
-    private TreeSet <Airline> airlines;
+    private HashMap <String, ArrayList<Airplane>> airlines;
     private ArrayList<Person> employers;
 
     public Airport() {
-        this.airlines = new TreeSet<>();
+        this.airlines = new HashMap<>();
         this.employers = new ArrayList<>();
     }
 
-    public TreeSet<Airline> getAirlines() {
+    public HashMap<String, ArrayList<Airplane>> getAirlines() {
         return airlines;
     }
 
-    public void setAirlines(TreeSet<Airline> airlines) {
+    public void setAirlines(HashMap<String, ArrayList<Airplane>> airlines) {
         this.airlines = airlines;
     }
 
@@ -33,14 +32,19 @@ public class Airport {
         this.employers = employers;
     }
     public void addAirline(String airlineName) throws NotFoundException, AlreadyExistsException, EmptyAirlineException {
-        Airline airline = AviationStack.searchAirline(airlineName);
-        if (airline != null) {
-               airlineName = airline.getAirlineName();
-               if (!getAirlines().contains(airlineName)) {
-                   getAirlines().add(airline);
-               } else {
-                   throw new AlreadyExistsException("ERROR: This airline already exists");
-               }
+        if (airlineName != null) {
+            if (!airlines.containsKey(airlineName)){
+                airlines.put(airlineName, new ArrayList<Airplane>());
+            }else {
+                throw new AlreadyExistsException("ERROR: This airline already exists");
+            }
+        }
+    }
+    public void addAirplane(String airlineName)throws NotFoundException{
+        if(airlines.isEmpty()){
+            if(airlines.containsKey(airlineName)){
+                //airlines.put(airlineName,);
+            }
         }
     }
 }

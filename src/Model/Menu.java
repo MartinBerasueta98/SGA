@@ -22,7 +22,7 @@ public class Menu {
             do {
                 System.out.println("Employer Menu");
                 System.out.println("1. Add Airline");
-                System.out.println("2. ");
+                System.out.println("2. Add Airplane to Airline");
                 System.out.println("3. Salir");
                 System.out.print("Elige una opción: ");
                 opcion = scanner.nextInt();
@@ -43,12 +43,21 @@ public class Menu {
 
         public void addAirline(){
             System.out.println("Enter airline names: ");
-            String airlineName = scanner.nextLine();
+            String airlineName = scanner.next();
             try {
                 airport.addAirline(airlineName);
                 System.out.println("Airline successfully added");
             }catch (AlreadyExistsException | NotFoundException | EmptyAirlineException e){
                 System.out.println(e.getMessage());
+            }
+        }
+
+        public void addAirplane()throws NotFoundException{
+            System.out.println("Enter Airline name's to add airplane");
+            String airlineName = scanner.next();
+
+            if(airport.getAirlines().containsKey(airlineName)){
+                airport.addAirplane(airlineName);
             }
         }
 }

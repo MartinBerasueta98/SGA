@@ -5,14 +5,14 @@ import java.util.ArrayList;
 public class Airline {
     private String airlineName;
     private String IATAcode;
-    private String fleetSize;
+    private ArrayList<Airplane> airplanes;
     private String status;
     private String type;
 
-    public Airline(String airlineName, String IATAcode, String fleetSize, String status, String type) {
+    public Airline(String airlineName, String IATAcode, String status, String type) {
         this.airlineName = airlineName;
         this.IATAcode = IATAcode;
-        this.fleetSize = fleetSize;
+        this.airplanes = new ArrayList<>();
         this.status = status;
         this.type = type;
     }
@@ -35,14 +35,6 @@ public class Airline {
         this.IATAcode = IATAcode;
     }
 
-    public String getFleetSize() {
-        return fleetSize;
-    }
-
-    public void setFleetSize(String fleetSize) {
-        this.fleetSize = fleetSize;
-    }
-
     public String getStatus() {
         return status;
     }
@@ -57,5 +49,13 @@ public class Airline {
 
     public void setType(String type) {
         this.type = type;
+    }
+
+    public ArrayList<Airplane> getAirplanes() {
+        return airplanes;
+    }
+
+    public void setAirplanes(ArrayList<Airplane> airplanes) {
+        this.airplanes = airplanes;
     }
 }

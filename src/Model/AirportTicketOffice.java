@@ -23,12 +23,15 @@ public class AirportTicketOffice extends OfficeTicket {
         return ticketStock;
     }
 
-    public AirportTicket sellTicket(String from, String to, Time time, Gate gate, String seat, Double price) throws NoAvailableFromSaleException {
-        if (isTicketAvailable(from, to, time, seat, gate)) {
-            if (Airplane.hasVipSeat()) {
+    public AirportTicket sellTicket(Flight flight,Time time, Seat seat, Double price, Passanger passanger) throws NoAvailableFromSaleException {
+        if (isTicketAvailable(flight.getOrigen().getLocation(), flight.getDestiny().getLocation(), time, seat, flight.getGate())) {
+            if (seat.getSeatType().getType() != "Economica") {
                 price = additionalCost();
             }
-            AirportTicket ticket = removeTicketFromStock(from, to, time, seat, gate);
+            if(passanger.isOverweight()){
+
+            }
+            AirportTicket ticket = removeTicketFromStock(flight.getOrigen().getLocation(), flight.getDestiny().getLocation(), time, seat, flight.getGate());
             ticket.setPrice(price);
             return ticket;
         } else {
@@ -36,17 +39,17 @@ public class AirportTicketOffice extends OfficeTicket {
         }
     }
 
-    public boolean isTicketAvailable(String from, String to, Time time, String seat, Gate nro){
-        String key = generateTicketKey(from, to, time, seat, nro);
+    public boolean isTicketAvailable(String from, String to, Time time, Seat seat, String gate){
+        String key = generateTicketKey(from, to, time, seat.getNro(), gate);
         return ticketStock.containsKey(key);
     }
 
-    public String generateTicketKey(String from, String to, Time time, String seat,  Gate nro){
-        return from + "-" + to + "/" + time + "/" + nro + "/" + seat;
+    public String generateTicketKey(String from, String to, Time time, String seat,  String gate){
+        return from + "-" + to + "/" + time + "/" + gate + "/" + seat;
     }
 
-    public AirportTicket removeTicketFromStock(String from, String to, Time time, String seat, Gate gate){
-        String key = generateTicketKey(from, to, time, seat, gate);
+    public AirportTicket removeTicketFromStock(String from, String to, Time time, Seat seat, String gate){
+        String key = generateTicketKey(from, to, time, seat.getNro(), gate);
         return ticketStock.remove(key);
     }
 
